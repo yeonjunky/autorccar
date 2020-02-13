@@ -1,6 +1,5 @@
-/venv/learn.py
-/venv/pyvenv.cfg
-/venv/image
+/venv/Include
 /venv/Lib
 /venv/Scripts
-/venv/src/data_image
+/venv/src/pyvenv.cfg
+/.idea

@@ -1,18 +1,20 @@
 import numpy as np
 import cv2
-import pyautogui
+from pyautogui import screenshot
+from PIL import ImageGrab
+from PIL import Image
 
 class collect_traning_data():
 
     def capture_image(self):
         cnt = 1
         while True:
-            img = pyautogui.screenshot()
-            frame = cv2.cvtColor(np.array(img), cv2.COLOR_RGB2BGR)
-            cv2.imshow('sdfa', frame)
+            img = ImageGrab.grab()
+            img.show()
             if cv2.waitKey(0) == ord("k"):
-                cv2.destroyAllWindows()
-                cv2.imwrite("data_image/data%d.jpg" % cnt, frame)
+                img.close()
+                file_name = "data_image\{}.jpg".format(cnt)
+                img.save(file_name)
                 cnt += 1
 
             elif cv2.waitKey(0) == ord("q"):

@@ -18,7 +18,7 @@ def apply_segment(img):
     segment = cv2.bitwise_and(img, mask)
     return segment
 
-def line_decetion(video_path):
+def line_detection(video_path):
     cap = cv2.VideoCapture(video_path)
 
     while (cap.isOpened()):
@@ -41,4 +41,4 @@ def line_decetion(video_path):
     cap.release()
     cv2.destroyAllWindows()
 
-line_decetion('input.mp4')
+line_detection('input.mp4')

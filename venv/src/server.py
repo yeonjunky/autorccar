@@ -1,10 +1,18 @@
 import socket
-import pickle
 import cv2
-import struct
+import numpy as np
+
+def recv(socket, count):
+    buf = b''
+    while count:
+        newbuf = socket.recv(count)
+        if not newbuf:
+            return None
+        buf += newbuf
+        count -= len(newbuf)
+    return buf
 
 PORT = 5555
-
 
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -20,12 +28,15 @@ print('connected by', addr)
 
 while True:
 
-    data = client_socket.recv(4096)
+    length = recv(client_socket, 16)
+    stringData = recv(client_socket, int(length))
+    data = np.fromstring(stringData, dtype='uint8')
 
-    if not data:
+    frame = cv2.imdecode(data, cv2.IMREAD_COLOR)
+    cv2.imshow('image', frame)
+    if cv2.waitKey(1) == ord('q'):
         break
 
-    frame = pickle.loads(data)
 
 
 server_socket.close()

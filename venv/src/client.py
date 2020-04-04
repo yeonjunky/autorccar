@@ -2,10 +2,9 @@ import cv2
 import socket
 import numpy as np
 
-HOST = '127.0.0.1'
 PORT = 5555
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture('input.mp4')
 
 cap.set(3, 320)
 cap.set(4, 240)
